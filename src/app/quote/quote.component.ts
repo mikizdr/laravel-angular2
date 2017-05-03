@@ -10,10 +10,26 @@ import { Quote } from '../quote.interface';
 export class QuoteComponent implements OnInit {
 
   @Input() quote: Quote;
+  editing: false;
+  editValue = '';
 
   constructor() { }
 
-  ngOnInit() {
+  ngOnInit()
+  {
+
+  }
+
+  onEdit()
+  {
+    this.editing = true;
+    this.editValue = this.quote.content;
+  }
+
+  onUpdate()
+  {
+    this.editValue = '';
+    this.editing = false;
   }
 
 }
