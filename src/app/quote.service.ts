@@ -28,7 +28,10 @@ export class QuoteService {
     const body = JSON.stringify({content: newContent});
     // define the content type of header
     const headers = new Headers({'Content-Type':'application/json'});
-    return this.http.put('http://localhost:8000/api/quote/' + id, body, {headers: headers});
+    return this.http.put('http://localhost:8000/api/quote/' + id, body, {headers: headers})
+      .map(
+        (response: Response) => response.json()
+      );
   }
 
 }

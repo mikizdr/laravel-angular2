@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 
 import { Quote } from '../quote.interface';
+import { QuoteService } from '../quote.service';
 
 @Component({
   selector: 'app-quote',
@@ -13,7 +14,7 @@ export class QuoteComponent implements OnInit {
   editing: false;
   editValue = '';
 
-  constructor() { }
+  constructor(private quoteService: QuoteService) { }
 
   ngOnInit()
   {
@@ -28,6 +29,11 @@ export class QuoteComponent implements OnInit {
 
   onUpdate()
   {
+    this.quoteService.updateQuote(this.quote.id, this.editValue)
+      .subscribe(
+        // too bad I`m just accessing "quote". Should be "quote.quote"
+        (quote: Quote) => this.quote = quote
+      );
     this.editValue = '';
     this.editing = false;
   }

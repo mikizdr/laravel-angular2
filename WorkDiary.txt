@@ -1,0 +1,25 @@
+1. npm install -g angular-cli
+2. ng new laravel-angular2
+3. create componenets
+	1. npm g c quote
+	2. npm g c quotes
+	3. npm g c new-quote
+4. set views for quote.component.ts and quotes.component.ts
+5. set view for app.component.ts
+6. create quote.interface.ts
+7. import Quote from quote.interface to quote.component.ts and export id as quotes: Quote[]
+8. import Quote from quote.interface to quote.component.ts and export id as quote: Quote
+9. create app.routing.ts
+10.import routng model from app.routing.ts to app.module.ts
+--------------------------------------
+- start app with: npm start ng serve - we should get a page on localhost:4200 with links and a button
+--------------------------------------
+11. create service quote.service.ts
+	npm g s quote
+
+12. Add Http and Response module and import rxjs/Rx to unlock map operator in quote.service.ts
+13. Define onGetQuotes() method in quotes.component.ts
+14. Add [quote]=quote in quotes.component.html in app-quote tag
+15. Add Input module in quote.component.ts
+16. Add links for edit, delete, save, cancel and show them when we click on a certain button (*ngIf)
+17. Add updateQuote() method in quote.service.ts
