@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 import { Quote } from '../quote.interface';
 
@@ -9,7 +9,7 @@ import { Quote } from '../quote.interface';
 })
 export class QuoteComponent implements OnInit {
 
-  quote: Quote;
+  @Input() quote: Quote;
 
   constructor() { }
 
