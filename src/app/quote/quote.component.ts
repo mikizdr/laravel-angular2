@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 
 import { Quote } from '../quote.interface';
 import { QuoteService } from '../quote.service';
@@ -11,6 +11,7 @@ import { QuoteService } from '../quote.service';
 export class QuoteComponent implements OnInit {
 
   @Input() quote: Quote;
+  @Output() quoteDeleted = new EventEmitter<Quote>();
   editing = false;
   editValue = '';
 
@@ -32,10 +33,28 @@ export class QuoteComponent implements OnInit {
     this.quoteService.updateQuote(this.quote.id, this.editValue)
       .subscribe(
         // too bad I`m just accessing "quote". Should be "quote.quote"
-        (quote: Quote) => this.quote = quote
+        (quote: Quote) => {
+          this.quote.content = this.editValue;
+          this.editValue = '';
+        }
       );
+    this.editing = false;
+  }
+
+  onCancel()
+  {
     this.editValue = '';
     this.editing = false;
   }
 
+  onDelete()
+  {
+    this.quoteService.deleteQuote(this.quote.id)
+      .subscribe(
+        () => {
+          this.quoteDeleted.emit(this.quote);
+          console.log('Quote deleted.');
+        }
+       );
+  }
 }
