@@ -8,6 +8,7 @@ import { QuoteComponent } from './quote/quote.component';
 import { QuotesComponent } from './quotes/quotes.component';
 import { NewQuoteComponent } from './new-quote/new-quote.component';
 import { routing } from './app.routing';
+import { QuoteService } from './quote.service';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,7 @@ import { routing } from './app.routing';
     HttpModule,
     routing
   ],
-  providers: [],
+  providers: [QuoteService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

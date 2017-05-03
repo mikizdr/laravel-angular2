@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Http, Response } from '@angular/http';
 import 'rxjs/Rx'; // to unlock map operator
+import { Observable } from 'rxjs';
 
 // add Injectable decorator
 @Injectable()
@@ -11,7 +12,7 @@ export class QuoteService {
 
   }
 
-  getQuotes()
+  getQuotes(): Observable<any>
   {
     return this.http.get('http://localhost:8000/api/quotes')
       .map(
