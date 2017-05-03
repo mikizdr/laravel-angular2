@@ -11,7 +11,7 @@ import { QuoteService } from '../quote.service';
 export class QuoteComponent implements OnInit {
 
   @Input() quote: Quote;
-  editing: false;
+  editing = false;
   editValue = '';
 
   constructor(private quoteService: QuoteService) { }
