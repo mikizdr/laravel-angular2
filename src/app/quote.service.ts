@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Http, Response } from '@angular/http';
+import { Http, Response, Headers } from '@angular/http';
 import 'rxjs/Rx'; // to unlock map operator
 import { Observable } from 'rxjs';
 
@@ -20,6 +20,15 @@ export class QuoteService {
           return response.json().quotes;
         }
       );
+  }
+
+  updateQuote(id: number, newContent: string)
+  {
+    //Converts a JavaScript value to a JavaScript Object Notation (JSON) string.
+    const body = JSON.stringify({content: newContent});
+    // define the content type of header
+    const headers = new Headers({'Content-Type':'application/json'});
+    return this.http.put('http://localhost:8000/api/quote/' + id, body, {headers: headers});
   }
 
 }
